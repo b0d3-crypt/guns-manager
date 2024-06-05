@@ -22,6 +22,14 @@ export class UsuarioService {
         return this._usuarioRepository.find();
     }
 
+    async get(nickLogin: string) {
+        const usuario: Usuario = await this._usuarioRepository.findOne({ where: {nick: nickLogin} });
+        if(!usuario)
+            throw new Error('Usuário não encontrado')
+
+        return usuario;
+    }
+
     async create(usuarioDTO: UsuarioDTO) {
         return this._transactionManager.transaction(async (entityManager) => {
             let pessoa = this._setPessoa(usuarioDTO);
