@@ -2,7 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import DbConfig from './config/database/bd.config';
+import { AuthModule } from './auth/auth.module';
+import DbConfig from './config/bd.config';
 import { PessoaModule } from './pessoa/pessoa.module';
 import { ToolsModule } from './tools/tools.module';
 import { UsuarioModule } from './usuario/usuario.module';
@@ -11,6 +12,7 @@ const modules = [
   PessoaModule,
   UsuarioModule,
   ToolsModule,
+  AuthModule
 ]
 
 @Module({
