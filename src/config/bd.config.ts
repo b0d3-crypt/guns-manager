@@ -9,6 +9,6 @@ const DbConfig: TypeOrmModuleOptions= {
     database: 'guns',
     entities: [__dirname + '/../entities/*.entity{.ts,.js}'],
     synchronize: true,
-    logging: false
+    logging: true
 }
 export default DbConfig 
