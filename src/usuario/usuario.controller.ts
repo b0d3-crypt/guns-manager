@@ -1,6 +1,7 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Res } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Res, UseGuards } from "@nestjs/common";
 import { ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { Response } from "express";
+import { AuthGuard } from "src/auth/auth.guard";
 import { UsuarioDTO } from "src/dtos/usuario.dto";
 import { Usuario } from "src/entities/usuario.entity";
 import { UsuarioService } from "./usuario.service";
@@ -12,6 +13,7 @@ export class UsuarioController {
         private _usuarioService: UsuarioService
     ){}
 
+    @UseGuards(AuthGuard)
     @Get()
     @HttpCode(200)
     @ApiOperation({ summary: 'Listar todos os usuários' })

@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -12,13 +13,14 @@ const modules = [
   PessoaModule,
   UsuarioModule,
   ToolsModule,
-  AuthModule
+  AuthModule,
+  JwtModule
 ]
 
 @Module({
   imports: [
+    ...modules,
     TypeOrmModule.forRoot(DbConfig),
-    ...modules
   ],
   controllers: [AppController],
   providers: [AppService],
