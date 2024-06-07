@@ -22,6 +22,10 @@ export class UsuarioService {
         return this._usuarioRepository.find();
     }
 
+    async getbyId(idUsuario: number) {
+        return this._usuarioRepository.findOne( {where: {id: idUsuario}} )
+    }
+
     async get(nickLogin: string) {
         const usuario: Usuario = await this._usuarioRepository.findOne({ where: {nick: nickLogin} });
         if(!usuario)
