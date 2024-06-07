@@ -24,12 +24,4 @@ export class AuthService {
         payload.token = await this._jwtService.signAsync(payload)
         return payload;
     }
-
-    async validateUser(payload: JwtPayload) {
-        const usuario = await this._usuarioService.getbyId(payload.sub);
-        if (!usuario) {
-            throw new UnauthorizedException('Usuário não encontrado.');
-        }
-        return usuario;
-    }
 }

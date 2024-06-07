@@ -6,7 +6,6 @@ import { Usuario } from "src/entities/usuario.entity";
 import { UsuarioService } from "src/usuario/usuario.service";
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./auth.service";
-import { JwtStrategy } from "./strategies/jwt.strategy";
 
 @Module({
     imports: [
@@ -16,7 +15,6 @@ import { JwtStrategy } from "./strategies/jwt.strategy";
     providers: [
         AuthService,
         UsuarioService,
-        JwtStrategy,
     ],
     controllers: [AuthController]
 })
