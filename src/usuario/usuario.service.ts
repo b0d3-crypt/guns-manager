@@ -22,6 +22,12 @@ export class UsuarioService {
         return this._usuarioRepository.find();
     }
 
+    async findAllUsuarioAndPessoa() {
+        return this._usuarioRepository.createQueryBuilder('usuario')
+                                    .leftJoinAndSelect('usuario.pessoa', 'pessoa')
+                                    .getMany();
+    }
+
     async getbyId(idUsuario: number) {
         return this._usuarioRepository.findOne( {where: {id: idUsuario}} )
     }
