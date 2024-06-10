@@ -13,4 +13,10 @@ export class Comentario {
     @OneToOne(() => Usuario)
     @JoinColumn({name: 'usuario_id'})
     usuario: Usuario;
+
+    constructor(id: number, comentario: string, usuario: Usuario) {
+        this.id = id;
+        this.comentario = comentario;
+        this.usuario = usuario;
+    }
 }
