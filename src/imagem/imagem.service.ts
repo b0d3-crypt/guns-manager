@@ -10,4 +10,7 @@ export class ImagemService {
         private readonly imagemRepository: Repository<Imagem>
     ){}
     
+    async save(imagem: Imagem): Promise<Imagem> {
+        return this.imagemRepository.save(imagem);
+    }
 }

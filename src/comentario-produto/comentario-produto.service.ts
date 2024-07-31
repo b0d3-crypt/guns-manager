@@ -9,4 +9,8 @@ export class ComentarioProdutoService {
         @InjectRepository(ComentarioProduto)
         private readonly _comentarioProdutoRepository: Repository<ComentarioProduto>
     ){}
+
+    async save(comentarioProduto: ComentarioProduto): Promise<ComentarioProduto> {
+        return this._comentarioProdutoRepository.save(comentarioProduto);
+    }
 }
