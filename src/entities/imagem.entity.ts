@@ -9,10 +9,10 @@ export class Imagem {
     @Column({name: 'nome'})
     nome: string;
 
-    @Column({name: 'imagem', type: 'bytea'})
-    imagem: Buffer;
+    @Column({name: 'imagem', type: 'varchar'})
+    imagem: string;
 
-    constructor(id: number, nome: string, imagem: Buffer) {
+    constructor(id: number, nome: string, imagem: string) {
         this.id = id;
         this.nome = nome;
         this.imagem = imagem;
