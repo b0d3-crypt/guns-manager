@@ -12,6 +12,7 @@ import { ComentarioModule } from './comentario/comentario.module';
 import DbConfig from './config/bd.config';
 import { ImagemModule } from './imagem/imagem.module';
 import { PessoaModule } from './pessoa/pessoa.module';
+import { ProdutoLikeModule } from './produto-like/produto-like.module';
 import { ProdutoModule } from './produto/produto.module';
 import { ToolsModule } from './tools/tools.module';
 import { UsuarioModule } from './usuario/usuario.module';
@@ -23,6 +24,7 @@ const modules = [
   ProdutoModule,
   ComentarioProdutoModule,
   ImagemModule,
+  ProdutoLikeModule,
   ToolsModule,
   AuthModule,
   JwtModule
@@ -48,5 +50,4 @@ export class AppModule implements OnModuleInit {
     const sql = fs.readFileSync(sqlFilePath, 'utf-8');
     await this.dataSource.query(sql);
   }
-  
 }

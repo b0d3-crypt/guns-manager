@@ -49,3 +49,16 @@ INSERT INTO produto (id, nome, descricao, imagem_id)
 VALUES (11, 'SVT-40', 'Calibre: 7.62x54mmR | Capacidade: 10 tiros (carregador destacável) | Fuzil semi-automático soviético desenvolvido durante a Segunda Guerra Mundial. Conhecido por sua precisão e robustez, foi usado extensivamente pelas forças armadas soviéticas.', 11)ON CONFLICT (id) DO NOTHING;
 INSERT INTO produto (id, nome, descricao, imagem_id) 
 VALUES (12, 'Zijiang M99', 'Calibre: .50 BMG (12.7x99mm NATO) | Capacidade: 5 tiros (carregador destacável) | Rifle de precisão chinês utilizado principalmente para longo alcance e operações antiveículo. Conhecido por seu poder de fogo e capacidade de penetração.', 12)ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO produto_like (produto_id, nr_like) VALUES (1,0) ON CONFLICT (produto_id) DO NOTHING;
+INSERT INTO produto_like (produto_id, nr_like) VALUES (2,0) ON CONFLICT (produto_id) DO NOTHING;
+INSERT INTO produto_like (produto_id, nr_like) VALUES (3,0) ON CONFLICT (produto_id) DO NOTHING;
+INSERT INTO produto_like (produto_id, nr_like) VALUES (4,0) ON CONFLICT (produto_id) DO NOTHING;
+INSERT INTO produto_like (produto_id, nr_like) VALUES (5,0) ON CONFLICT (produto_id) DO NOTHING;
+INSERT INTO produto_like (produto_id, nr_like) VALUES (6,0) ON CONFLICT (produto_id) DO NOTHING;
+INSERT INTO produto_like (produto_id, nr_like) VALUES (7,0) ON CONFLICT (produto_id) DO NOTHING;
+INSERT INTO produto_like (produto_id, nr_like) VALUES (8,0) ON CONFLICT (produto_id) DO NOTHING;
+INSERT INTO produto_like (produto_id, nr_like) VALUES (9,0) ON CONFLICT (produto_id) DO NOTHING;
+INSERT INTO produto_like (produto_id, nr_like) VALUES (10,0) ON CONFLICT (produto_id) DO NOTHING;
+INSERT INTO produto_like (produto_id, nr_like) VALUES (11,0) ON CONFLICT (produto_id) DO NOTHING;
+INSERT INTO produto_like (produto_id, nr_like) VALUES (12,0) ON CONFLICT (produto_id) DO NOTHING;

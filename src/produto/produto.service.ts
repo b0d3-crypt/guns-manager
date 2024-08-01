@@ -35,6 +35,7 @@ export class ProdutoService {
                                         .leftJoin('comentario', 'B', 'A.comentario_id = B.id')
                                         .leftJoin('usuario', 'C', 'B.usuario_id = C.id')
                                         .leftJoin('pessoa', 'D', 'C.pessoa_id = D.id')
+                                        .leftJoin('produto_like', 'E', 'produto.id = E.produto_id')
                                         .select([
                                             'produto.id AS idProduto',
                                             'produto.nome AS nmProduto',
@@ -42,7 +43,8 @@ export class ProdutoService {
                                             'imagem.imagem AS imagem',
                                             'B.comentario AS comentario',
                                             'C.nick AS nick',
-                                            'D.email AS email'
+                                            'D.email AS email',
+                                            'E.nr_like AS nrLike'
                                         ])
                                         .where('produto.id = :produtoId', { produtoId })
                                         .getRawMany();

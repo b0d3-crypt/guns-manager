@@ -40,6 +40,19 @@ export class UsuarioService {
         return usuario;
     }
 
+    async getByNameAndEmail(nome: string, email: string): Promise<Usuario> {
+        const usuario = await this._usuarioRepository
+        .createQueryBuilder('usuario')
+        .leftJoinAndSelect('usuario.pessoa', 'pessoa')
+        .where('pessoa.nome = :nome AND pessoa.email = :email', { nome, email })
+        .getOne();
+        
+        if (!usuario) {
+            throw new Error('Usuário não encontrado');
+        }
+        return usuario;
+    }
+
     async create(usuarioDTO: UsuarioDTO) {
         return this._transactionManager.transaction(async (entityManager) => {
             let pessoa = this._setPessoa(usuarioDTO);
@@ -47,6 +60,26 @@ export class UsuarioService {
             const usuario = await this._setUsuario(usuarioDTO, pessoa);
             await entityManager.save(usuario);
         })
+    }
+
+    async saveUserForApp(usuarioDTO: UsuarioDTO) {
+        try {
+            const usuario: Usuario = await this.getByNameAndEmail(usuarioDTO.nome, usuarioDTO.email);
+            if(usuario) {
+                return usuario
+            }
+            this._transactionManager.transaction(async (entityManager) => {
+                usuarioDTO.nick = usuarioDTO.nome;
+                usuarioDTO.password = '123456789';
+                let pessoa = this._setPessoa(usuarioDTO);
+                pessoa = await entityManager.save(pessoa);
+                const usuario = await this._setUsuario(usuarioDTO, pessoa);
+                await entityManager.save(usuario);
+                return usuario;
+            })
+        } catch (error) {
+            throw error.message
+        }
     }
 
     private _setPessoa(usuarioDTO: UsuarioDTO) {
