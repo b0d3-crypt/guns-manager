@@ -31,18 +31,20 @@ export class ProdutoService {
     async findProdutoAndComentario(produtoId: number): Promise<ProdutoReponse[]> {
         return await this._produtoRepository.createQueryBuilder('produto')
                                         .leftJoinAndSelect('produto.imagem', 'imagem')
-                                        .leftJoin('comentario_produto', 'comentario_produto', 'produto.id = comentario_produto.produto_id')
-                                        .leftJoin('comentario', 'comentario', 'comentario_produto.comentario_id = comentario.id')
-                                        .leftJoin('usuario', 'usuario', 'comentario.usuario_id = usuario.id')
-                                        .leftJoin('pessoa', 'pessoa', 'usuario.pessoa_id = pessoa.id')
+                                        .leftJoin('comentario_produto', 'A', 'produto.id = A.produto_id')
+                                        .leftJoin('comentario', 'B', 'A.comentario_id = B.id')
+                                        .leftJoin('usuario', 'C', 'B.usuario_id = C.id')
+                                        .leftJoin('pessoa', 'D', 'C.pessoa_id = D.id')
+                                        .leftJoin('produto_like', 'E', 'produto.id = E.produto_id')
                                         .select([
                                             'produto.id AS idProduto',
                                             'produto.nome AS nmProduto',
                                             'produto.descricao AS descricao',
                                             'imagem.imagem AS imagem',
-                                            'comentario.comentario AS comentario',
-                                            'usuario.nick AS nick',
-                                            'pessoa.email AS email'
+                                            'B.comentario AS comentario',
+                                            'C.nick AS nick',
+                                            'D.email AS email',
+                                            'E.nr_like AS nrLike'
                                         ])
                                         .where('produto.id = :produtoId', { produtoId })
                                         .getRawMany();

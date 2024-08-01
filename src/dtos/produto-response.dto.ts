@@ -6,4 +6,5 @@ export class ProdutoReponse {
     comentario: string;
     nick: string;
     email: string;
+    nrLike: number;
 }
