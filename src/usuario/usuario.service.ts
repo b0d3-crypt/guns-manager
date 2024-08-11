@@ -47,9 +47,6 @@ export class UsuarioService {
         .where('pessoa.nome = :nome AND pessoa.email = :email', { nome, email })
         .getOne();
         
-        if (!usuario) {
-            throw new Error('Usuário não encontrado');
-        }
         return usuario;
     }
 
