@@ -16,7 +16,7 @@ export class ProdutoService {
         return this._produtoRepository.save(produto);
     }
 
-    async findProdutoAndImagem(): Promise<ProdutoImagem[]> {
+    async findProdutoAndImagem(offSet: number, limit: number): Promise<ProdutoImagem[]> {
         return await this._produtoRepository.createQueryBuilder('produto')
                                     .leftJoinAndSelect('produto.imagem', 'imagem')
                                     .select([
@@ -25,6 +25,8 @@ export class ProdutoService {
                                         'produto.descricao AS descricao',
                                         'imagem.imagem AS imagem',
                                     ])
+                                    .offset(offSet)
+                                    .limit(limit)
                                     .getRawMany();
     }
 

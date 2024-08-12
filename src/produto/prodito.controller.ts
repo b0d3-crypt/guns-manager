@@ -9,9 +9,9 @@ export class ProdutoController {
         private _produtoService: ProdutoService
     ){}
 
-    @Get()
-    async findProdutosImagem(): Promise<ProdutoImagem[]> {
-        return this._produtoService.findProdutoAndImagem();
+    @Get(':offset/:limit')
+    async findProdutosImagem(@Param('offset') offset: number, @Param('limit') limit: number): Promise<ProdutoImagem[]> {
+        return this._produtoService.findProdutoAndImagem(offset, limit);
     }
 
     @Get(':idProduto')
