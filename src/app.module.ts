@@ -15,6 +15,7 @@ import { PessoaModule } from './pessoa/pessoa.module';
 import { ProdutoLikeModule } from './produto-like/produto-like.module';
 import { ProdutoModule } from './produto/produto.module';
 import { ToolsModule } from './tools/tools.module';
+import { UsuarioLikeModule } from './usuario-like/usuario-like.module';
 import { UsuarioModule } from './usuario/usuario.module';
 
 const modules = [
@@ -25,6 +26,7 @@ const modules = [
   ComentarioProdutoModule,
   ImagemModule,
   ProdutoLikeModule,
+  UsuarioLikeModule,
   ToolsModule,
   AuthModule,
   JwtModule

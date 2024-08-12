@@ -47,6 +47,7 @@ export class ProdutoService {
                                             'E.nr_like AS nrLike'
                                         ])
                                         .where('produto.id = :produtoId', { produtoId })
+                                        .orderBy('produto.id ', 'DESC')
                                         .getRawMany();
     }
 }
