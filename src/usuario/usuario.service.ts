@@ -60,20 +60,22 @@ export class UsuarioService {
     }
 
     async saveUserForApp(usuarioDTO: UsuarioDTO) {
+        let user: Usuario;
         try {
             const usuario: Usuario = await this.getByNameAndEmail(usuarioDTO.nome, usuarioDTO.email);
             if(usuario) {
                 return usuario
             }
-            this._transactionManager.transaction(async (entityManager) => {
+            await this._transactionManager.transaction(async (entityManager) => {
                 usuarioDTO.nick = usuarioDTO.nome;
                 usuarioDTO.password = '123456789';
                 let pessoa = this._setPessoa(usuarioDTO);
                 pessoa = await entityManager.save(pessoa);
                 const usuario = await this._setUsuario(usuarioDTO, pessoa);
                 await entityManager.save(usuario);
-                return usuario;
+                user = usuario;
             })
+            return user;
         } catch (error) {
             throw error.message
         }

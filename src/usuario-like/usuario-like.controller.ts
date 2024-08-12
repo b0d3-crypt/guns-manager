@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { UsuarioLike } from "src/entities/usuario-like.entity";
 import { UsuarioLikeService } from "./usuario-like.service";
 
@@ -16,5 +16,10 @@ export class UsuarioLikeController {
     @Post()
     async save(@Body() usuarioLike: UsuarioLike) {
         await this._usuarioLikeService.save(usuarioLike);
+    }
+
+    @Get(':idUsuario/:idProduto')
+    async get(@Param('idUsuario') idUsuario: number, @Param('idProduto') idProduto: number) {
+        return await this._usuarioLikeService.get(idUsuario, idProduto);
     }
 }

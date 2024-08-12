@@ -20,4 +20,13 @@ export class UsuarioLikeService {
     save(usuarioLike: UsuarioLike) {
         this._usuarioLikeRepository.save(usuarioLike);
     }
+
+    get(usuarioId: number, produtoId: number) {
+        return this._usuarioLikeRepository.findOne({
+            where: {
+                usuarioId: usuarioId, 
+                produtoId: produtoId,
+            },
+        });
+    }
 }
