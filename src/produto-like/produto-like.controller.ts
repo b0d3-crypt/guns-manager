@@ -10,6 +10,6 @@ export class ProdutoLikeController {
 
     @Put()
     async atualizarLike(@Body() produtoLike: ProdutoLike): Promise<ProdutoLike> {
-        return this._produtoLikeService.save(produtoLike);
+        return this._produtoLikeService.put(produtoLike);
     }
 }

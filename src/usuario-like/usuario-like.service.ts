@@ -17,8 +17,12 @@ export class UsuarioLikeService {
         });
     }
 
-    save(usuarioLike: UsuarioLike) {
-        this._usuarioLikeRepository.save(usuarioLike);
+    async save(usuarioLike: UsuarioLike) {
+        return await this._usuarioLikeRepository.query(
+            `INSERT INTO usuario_like (produto_id, usuario_id)
+             VALUES ($1, $2)`,
+            [usuarioLike.produtoId, usuarioLike.usuarioId]
+        );
     }
 
     get(usuarioId: number, produtoId: number) {

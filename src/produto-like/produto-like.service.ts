@@ -14,4 +14,13 @@ export class ProdutoLikeService {
         return this._produtoLikeRepository.save(produtoLike);
     }
 
+    async put(produtoLike: ProdutoLike) {
+        return await this._produtoLikeRepository.query(
+            `UPDATE produto_like 
+             SET nr_like = $1
+             WHERE produto_id = $2`,
+            [produtoLike.nrLike, produtoLike.produto_id]
+        );
+    }
+
 }
